@@ -1,0 +1,37 @@
+{
+    "packages": [
+        {
+            "name": "wilon/myf",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./vendor/wilon/myf",
+                "reference": "59ee5e9ff17759399d968193c9d0a545d2cd4a3a"
+            },
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Wilon\\Myf\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "wuwenlong",
+                    "email": "email@example.com"
+                }
+            ],
+            "description": "description",
+            "transport-options": {
+                "relative": true
+            },
+            "install-path": "../wilon/myf"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

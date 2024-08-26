@@ -1,0 +1,26 @@
+{
+  "name": "chinawilon/myf",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "wuwenlong",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "wilon/myf": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./vendor/wilon/myf"
+    }
+  ]
+}

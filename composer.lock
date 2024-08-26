@@ -1,0 +1,49 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "b588a28e7ed429819c1abc36bd94da39",
+    "packages": [
+        {
+            "name": "wilon/myf",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./vendor/wilon/myf",
+                "reference": "59ee5e9ff17759399d968193c9d0a545d2cd4a3a"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Wilon\\Myf\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "wuwenlong",
+                    "email": "email@example.com"
+                }
+            ],
+            "description": "description",
+            "transport-options": {
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "wilon/myf": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}
