@@ -77,12 +77,10 @@ class Route
 
     public function setHandler(RouteNode $current, string|\Closure $handler): void
     {
-        if ( $handler instanceof \Closure) {
-            return ;
+        if (is_string($handler)) {
+            $handler = isset($this->attributes['namespace']) ?
+                $this->attributes['namespace'] . '\\' . $handler : $handler;
         }
-        $handler = isset($this->attributes['namespace']) ?
-            $this->attributes['namespace'] . '\\' . $handler : $handler;
-
         $current->setHandler($handler);
     }
 }
