@@ -62,28 +62,51 @@ class Container
                 return new $abstract();
             }
             // 获取构造函数的参数,分别处理
-            $params = array_map(function(\ReflectionParameter $parameter) use($arguments) {
-                return $this->resolveType($parameter, $arguments);
-            }, $constructor->getParameters());
-            return $reflectionClass->newInstanceArgs($params);
+            return $reflectionClass->newInstanceArgs(
+                $this->getParams($constructor->getParameters(), $arguments)
+            );
         }
         throw new \RuntimeException("[{$abstract}] is not instantiable.");
     }
 
-    public function call(mixed $abstract, string $method, array $arguments = [])
+    public function call(mixed $abstract, array $arguments = [])
     {
+        // function (Request $request) {}
+        if ( $abstract instanceof \Closure ) {
+            $reflectionFunction = new \ReflectionFunction($abstract);
+            return $reflectionFunction->invokeArgs(
+                $this->getParams($reflectionFunction->getParameters(), $arguments)
+            );
+        }
+        // IndexController@index
+        if ( is_string($abstract) ) {
+            if (! str_contains($abstract, '@') ) {
+                $abstract .= '@__invoke';
+            }
+            [$abstract, $method] = explode('@', $abstract);
+        }
+
+        // ['IndexController', 'index']
+        if ( is_array($abstract) ) {
+            [$abstract, $method] = $abstract;
+        }
+
         $instance = $abstract;
         if (! is_object($abstract) ) {
             $instance = $this->make($abstract);
         }
         // 反射这个类的方法
         $reflectionMethod = new \ReflectionMethod($instance, $method);
-        $params = array_map(function(\ReflectionParameter $parameter) use($arguments){
-            return $this->resolveType($parameter, $arguments);
-        }, $reflectionMethod->getParameters());
-        return $reflectionMethod->invokeArgs($instance, $params);
+        return $reflectionMethod->invokeArgs($instance, $this->getParams(
+            $reflectionMethod->getParameters(), $arguments));
     }
 
+    public function getParams(array $parameters, array $arguments = [])
+    {
+        return array_map(function(\ReflectionParameter $parameter) use($arguments){
+            return $this->resolveType($parameter, $arguments);
+        }, $parameters);
+    }
 
     public function resolveType(\ReflectionParameter $parameter, array $arguments = [])
     {
