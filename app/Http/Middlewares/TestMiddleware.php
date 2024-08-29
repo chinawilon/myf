@@ -20,6 +20,6 @@ class TestMiddleware
 
     public function terminate(Request $request, Response $response): void
     {
-        file_put_contents('test.txt', 'terminate', FILE_APPEND);
+//        file_put_contents('test.txt', 'terminate', FILE_APPEND);
     }
 }
