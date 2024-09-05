@@ -6,6 +6,6 @@ class L
 {
     public function info(string ...$msg): void
     {
-        echo '[info] ' . implode(' ', $msg) . PHP_EOL;
+        file_put_contents("php://stderr", '[info] ' . implode(' ', $msg) . PHP_EOL, FILE_APPEND);
     }
 }

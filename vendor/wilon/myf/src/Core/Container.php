@@ -25,6 +25,11 @@ class Container
         $this->aliases[$alias] = $abstract;
     }
 
+    public function bound(string $abstract): bool
+    {
+        return isset($this->bindings[$abstract]) || isset($this->instances[$abstract]) || isset($this->aliases[$abstract]);
+    }
+
     public function rebound()
     {
         // no implement
