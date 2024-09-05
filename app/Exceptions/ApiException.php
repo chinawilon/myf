@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use Throwable;
+
 class ApiException extends \Exception
 {
     public const E_USER_NOT_FOUND = 10001;
