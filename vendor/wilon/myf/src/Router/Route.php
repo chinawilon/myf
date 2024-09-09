@@ -32,7 +32,7 @@ class Route
 
     public function addRoute(string|array $method, string $path, \Closure|string $handler): void
     {
-        $paths = explode('/', trim($path, '/'));
+        $paths = explode('/', rtrim($path, '/'));
         foreach((array) $method as $m) {
             $current = $this->root;
             foreach ($paths as $p) {
@@ -58,7 +58,7 @@ class Route
 
     public function getRouteInfo(string $method, string $path): array
     {
-        $paths = explode('/', trim($path, '/'));
+        $paths = explode('/', rtrim($path, '/'));
         $current = $this->root;
         $params = [];
         foreach ($paths as $p) {
